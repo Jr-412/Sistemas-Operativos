@@ -1,4 +1,4 @@
-//Makefile de los 8 laboratorios de Posix
+#Makefile de los 8 laboratorios de Posix
 
 GCC = gcc
 FLAGS =
