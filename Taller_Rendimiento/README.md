@@ -1,4 +1,4 @@
-# 🚀 Evaluación de Rendimiento en Multiplicación de Matrices 
+#  Evaluación de Rendimiento en Multiplicación de Matrices 
 
 **Pontificia Universidad Javeriana**  
 **Curso:** Sistemas Operativos  
@@ -72,9 +72,9 @@ Para automatizar las pruebas:
 
 | Sistema          | Núcleos / Hilos | RAM    |
 |------------------|------------------|--------|
-| WSL              | Variable         | 3.8 MiB|
-| Ubuntu (12)    | 4 hilos          | 11 GB  |
-| Ubuntu (16)    | 8 hilos          | 15 GB  |
+| WSL              | 4 hilos         | 3.8 MiB|
+| Ubuntu (12)    | 12 hilos          | 11 GB  |
+| Ubuntu (16)    | 16 hilos          | 15 GB  |
 | Replit           | 8 hilos      | 64 GB  |
 
 ---
@@ -90,10 +90,26 @@ Para cada ejecución se obtiene:
 
 ## 🧳 Cómo Ejecutar
 
-```bash
-incluir "chmod +x mmClasicaPosix mmClasicaFork mmClasicaOpenMP" en caso de usar archivos pre-compilados
+Para realizar la ejecucion del programa se incluye un archivo Makefile con el objetivo de la automatizacion en la compilacion. Ademas, con el archivo lanzador se pueden modificar los tamanos de las matrices y el numero de hilos para la ejecucion de los programas. A continuacion, se muestra el paso a paso a seguir:
 
-gcc mmClasicaPosix.c mmInterfazPosix.c -o mmClasicaPosix -pthread
-gcc mmClasicaFork.c mmInterfazFork.c -o mmClasicaFork
-gcc mmClasicaOpenMP.c mmInterfazOpenMP.c -o mmClasicaOpenMP -fopenmp
-/usr/bin/perl ./lanza.pl
+**Paso 1**
+```bash
+make clean
+```
+Elimina posibles archivos ejecutables anteriormente creados
+
+**Paso 2**
+```bash
+make
+```
+Compila todos los programas a la vez, evitando que el usuario tenga que compilar uno por uno
+
+**Paso 3**
+```bash
+/usr/bin/perl ./lanzador.pl
+```
+Realiza la ejecucion de los programas
+
+--Nota--
+Este programa puede tardar bastante en ejecutar debido a los tamanos de matrices, la ejecucion se termina cuando vuelve a apararecer la terminal para poder escribir
+
