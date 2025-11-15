@@ -1,4 +1,4 @@
-# 🧵 **Taller 03 – Sincronización POSIX (Productor–Consumidor y Máximo con hilos)**
+# 🧵 **Taller 03 – Sincronización POSIX**
 
 **Pontificia Universidad Javeriana**  
 **Curso:** Sistemas Operativos  
