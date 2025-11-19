@@ -64,5 +64,52 @@ Se emplea un **mutex global (`mutex_parque`)** para evitar condiciones de carrer
 Solo un hilo puede modificar estas estructuras al mismo tiempo.
 
 ---
+## 🧪 Como se prueba?
+Para probar este proyecto se requiere usar un archivo de texto, el cual sera leido por el agente. El archivo cuenta con la siguiente estructura:
 
-## 📂 Estructura del Proyecto
+Lopez,8,10
+Martinez,8,12
+Torres,9,4
+Garcia,7,6
+
+---
+
+## 🛠️ Compilación
+Para realizar la compilacion del proyecto se realizo un archivo Makefile con el fin de automatizar el proceso. A continuacion se explica el paso a paso:
+
+**Paso 1**
+Se eliminan posibles archivos ejecutables para hacer nuevos con el siguiente comando:
+```bash
+make clean
+```
+**Paso 2**
+Se realiza la compilacion de todos los programas con el siguiente comando:
+```bash
+make 
+```
+**Paso 3**
+Tras haber compilado todo pasamos con la ejecucion. Para el proyecto se necesitan al menos 2 terminales diferentes para su funcionamiento. A continuacion, se muestra la terminal que sera usada como el controlador y esta sera ejecutada con el siguiente comando:
+```bash
+./controlador -i horaIni -f horaFin -s segHoras -t total -p pipeRecibe
+```
+Ahora solo queda reemplazar los valores de la siguiente manera:
+--horaIni-- = Hace referencia a la hora de apertura del parque, para el proyecto se usa 7
+--horaFin-- = Hace referencia a la hora de cierre del parque, para el proyecto se usa 19
+--segHoras-- = Hace referencia a cuantos segundos dura la simulacion de una hora dentro del sistema, para el proyecto se usa 2
+--total-- = Hace referencia al aforo maximo del parque, para el proyecto se usa 300
+--pipeRecibe-- = Hace referencia a la ruta donde se encuentra el pipe donde se reciben las solicitudes, para el proyecto se usa /tmp/pipe_controlador
+
+A continuacion, se muestra la terminal que sera usada como el agente y esta sera ejecutada con el siguiente comando:
+```bash
+./agente -s nombre -a fileSolicitud -p pipeRecibe
+```
+Ahora solo queda reemplazar los valores de la siguiente manera:
+--nombre-- = Hace referencia al nombre que se le asignara al agente, en el proyecto se usa A1
+--fileSolicitud-- = Hace referencia al nombre del archivo de donde se tomaran las solicitudes a enviar, este debe estar en la misma carpeta donde se encuentre el codigo del proyecto, en el proyecto se usa solicitudes1.txt
+--pipeRecibe-- = Hace referencia al directorio del pipe donde se enviaran las solicitudes, para el proyecto se usa /tmp/pipe_controlador
+
+**Nota**
+Ambas terminales se deben de ejecutar simultaneamente para que funcione.
+
+---
+Tras haber ejecutado el proyecto se vera en consola el proceso de comunicacion entre cliente-servidor a traves de pipes, evidenciando el envio de solitudes y la programacion de reservas en el parque
